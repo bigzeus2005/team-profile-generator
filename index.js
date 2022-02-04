@@ -48,11 +48,11 @@ const addEmployee = () => {
     }
   ])
     .then((answer) => {
-      switch (answer.type) {
+      switch (answer.selection) {
         case 'Add Engineer':
-          return engineer();
+          return addEngineer();
         case 'Add Intern':
-          return intern();
+          return addIntern();
         case 'Done':
           return writeFile(answer);
       }
@@ -120,7 +120,7 @@ const addIntern = () => {
 };
 
 const writeFile = () => {
-  fs.writeFile('./dist/index.html', buildHTML(employee), err => {
+  fs.writeFile('./dist/index.html', teamGenerator(employee), err => {
     if (err) {
       return console.log(err);
     }
